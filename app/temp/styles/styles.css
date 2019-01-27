@@ -798,3 +798,79 @@ a {
     font-weight: 400;
     margin: .25rem 0 1rem 0;
   }
+
+.icon {
+      background-image: url('/assets/images/sprites/sprite-a71f74ca.svg');
+    }
+
+.icon--clear-view-escapes {
+    width: 142.4px;
+    height: 59.53px;
+    background-position: 0 0;
+  }
+
+.icon--comment {
+    width: 64px;
+    height: 64px;
+    background-position: 64.321608040201% 99.62096774193549%;
+  }
+
+.icon--facebook {
+    width: 21.23px;
+    height: 42.01px;
+    background-position: 49.633949621541134% 40.776765531885744%;
+  }
+
+.icon--fire {
+    width: 56px;
+    height: 64px;
+    background-position: 68.79227053140097% 0;
+  }
+
+.icon--globe {
+    width: 64px;
+    height: 64px;
+    background-position: 0 99.62096774193549%;
+  }
+
+.icon--instagram {
+    width: 42.01px;
+    height: 42.01px;
+    background-position: 64.43730485542332% 43.83861908349887%;
+  }
+
+.icon--mail {
+    width: 64px;
+    height: 48px;
+    background-position: 99.69849246231156% 45.714285714285715%;
+  }
+
+.icon--rain {
+    width: 64px;
+    height: 64px;
+    background-position: 99.69849246231156% 0;
+  }
+
+.icon--star {
+    width: 64px;
+    height: 64px;
+    background-position: 32.1608040201005% 99.62096774193549%;
+  }
+
+.icon--twitter {
+    width: 51.78px;
+    height: 42.06px;
+    background-position: 93.93049900577597% 76.7438673427436%;
+  }
+
+.icon--wifi {
+    width: 60px;
+    height: 64px;
+    background-position: 29.55665024630542% 48.00806451612903%;
+  }
+
+.icon--wifi_copy {
+    width: 60px;
+    height: 64px;
+    background-position: 0 48.00806451612903%;
+  }
