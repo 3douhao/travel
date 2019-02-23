@@ -1,13 +1,16 @@
 // require('./gulp/tasks/styles')
 // require('./gulp/tasks/watch')
-
+// const path = require('path')
+const wpconfig = require('./webpack.config.js')
 const { src, dest, watch, series } = require('gulp')
+const webpack = require('webpack')
 const postcss = require('gulp-postcss')
 const autoprefixer = require('gulp-autoprefixer')
 const cssImport = require('postcss-import')
 const mixins = require('postcss-mixins')
 const nested = require('postcss-nested')
 const cssvars = require('postcss-simple-vars')
+const hexrgba = require('postcss-hexrgba')
 const browserSync = require('browser-sync').create()
 const svgSprite = require('gulp-svg-sprite')
 const rename = require('gulp-rename')
@@ -26,7 +29,7 @@ const config = {
   }
 }
 const styles = function (done) {
-  return src('./app/assets/styles/styles.css').pipe(postcss([cssImport, mixins, cssvars, nested, autoprefixer])).pipe(dest('./app/temp/styles'))
+  return src('./app/assets/styles/styles.css').pipe(postcss([cssImport, mixins, cssvars, nested, hexrgba, autoprefixer])).pipe(dest('./app/temp/styles'))
   done()
 }
 const bs = function (done) {
@@ -48,11 +51,28 @@ const cssInject = function (done) {
   done()
 }
 
+const wp = function (done) {
+  webpack(wpconfig, function (err, stats) {
+    if (err) {
+      console.log(err.toString())
+    }
+    console.log(stats.toString())
+    done()
+  })
+}
+
+const wpRefresh = function (done) {
+  browserSync.reload()
+  done()
+}
+
 watch('./app/index.html', function (done) {
   browserSync.reload()
   done()
 })
 watch('./app/assets/styles/**/*.css', series(styles, cssInject))
+
+watch('./app/assets/scripts/**/*.js', series(wp, wpRefresh))
 
 const svgCreate = function (done) {
   return src('./app/assets/images/icons/**/*.svg')
@@ -76,6 +96,7 @@ const clean = function (done) {
 
 exports.icons = series(svgCreate, copySpriteCss, copySpriteImage)
 
-exports.bs = series(clean, svgCreate, copySpriteCss, copySpriteImage, bs)
+exports.bs = series(clean, svgCreate, copySpriteCss, copySpriteImage, bs, wp)
 exports.svg = svgCreate
 exports.cp = copySpriteCss
+exports.wp = wp

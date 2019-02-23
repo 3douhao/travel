@@ -1,0 +1,111 @@
+.site-header {
+  position: absolute;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 2;
+  transition: background-color .3s ease-out;
+  &--is-expanded {
+    background-color: rgba($mainBlue, .55)
+  }
+  @mixin atMedium {
+    background-color: rgba($mainBlue, .3);
+  }
+  &__menu-icon {
+    margin-right: 30px;
+    height: 19px;
+    width: 20px;
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    right: 10px;
+    &::before {
+      position: absolute;
+      transform-origin: 0 0;
+      transition: transform .3s ease-out;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+    }
+    &__middle {
+      position: absolute;
+      transition: all .3s ease-out;
+      transform-origin: 0 50%;
+      left: 0;
+      top: 8px;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+    }
+    &::after {
+      position: absolute;
+      transform-origin: 0 100%;
+      transition: transform .3s ease-out;
+      content:"";
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+    }
+    @mixin atMedium {
+      display: none;
+    }
+  }
+  &__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(.8);
+    transform-origin: 50% 0;
+    background-color: $mainBlue;
+    padding: 25px 36px;
+    top: 0;
+    @mixin atMedium {
+      left: auto;
+      transform: translateX(0);
+    }
+  }
+  &__logo__graphic {
+    text-indent: -9999px;
+  }
+  &__btn-container {
+    padding-top: 3px;
+    @mixin atMedium {
+      float: right;
+    }
+  }
+  &__menu-content {
+    padding-top: 90px;
+    text-align: center;
+    opacity: 0;
+    transition: all .3s ease-out;
+    transform: scale(1.2);
+    position: relative;
+    z-index: -10;
+    @mixin atMedium {
+      opacity: 1;
+      z-index: 1;
+      padding-top: 0;
+      transform: scale(1);
+    }
+    &--is-visible {
+      opacity: 1;
+      z-index: 1;
+      transform: scale(1);
+    }
+  }
+  &__menu-icon--close-x {
+    &::before {
+      transform: rotate(45deg) scaleX(1.25);
+    }
+    .site-header__menu-icon__middle {
+      opacity: 0;
+      transform: translateX(0);
+    }
+    &::after {
+      transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+    }
+  }
+}

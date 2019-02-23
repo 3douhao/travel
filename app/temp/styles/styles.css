@@ -377,11 +377,19 @@ a {
 
 .large-hero__text {
     position: absolute;
+    padding-top: 88px;
     top: 50%;
     transform: translateY(-50%);
     left: 0;
     width: 100%;
     text-align: center;
+  }
+
+@media (min-width: 800px) {
+
+.large-hero__text {
+      padding-top: 60px
+  }
   }
 
 .large-hero__title {
@@ -894,5 +902,217 @@ a {
 .site-footer__text {
       display: inline;
       margin-bottom: 0
+  }
+  }
+
+.site-header {
+  position: absolute;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 2;
+  transition: background-color .3s ease-out;
+}
+
+.site-header--is-expanded {
+    background-color: rgba(47,85,114, .55)
+  }
+
+@media (min-width: 800px) {
+
+.site-header {
+    background-color: rgba(47,85,114, .3)
+}
+  }
+
+.site-header__menu-icon {
+    margin-right: 30px;
+    height: 19px;
+    width: 20px;
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    right: 10px;
+  }
+
+.site-header__menu-icon::before {
+      position: absolute;
+      transform-origin: 0 0;
+      transition: transform .3s ease-out;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+    }
+
+.site-header__menu-icon__middle {
+      position: absolute;
+      transition: all .3s ease-out;
+      transform-origin: 0 50%;
+      left: 0;
+      top: 8px;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+    }
+
+.site-header__menu-icon::after {
+      position: absolute;
+      transform-origin: 0 100%;
+      transition: transform .3s ease-out;
+      content:"";
+      bottom: 0;
+      left: 0;
+      width: 20px;
+      height: 3px;
+      background-color: #FFF;
+    }
+
+@media (min-width: 800px) {
+
+.site-header__menu-icon {
+      display: none
+  }
+  }
+
+.site-header__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scale(.8);
+    transform-origin: 50% 0;
+    background-color: #2f5572;
+    padding: 25px 36px;
+    top: 0;
+  }
+
+@media (min-width: 800px) {
+
+.site-header__logo {
+      left: auto;
+      transform: translateX(0)
+  }
+  }
+
+.site-header__logo__graphic {
+    text-indent: -9999px;
+  }
+
+.site-header__btn-container {
+    padding-top: 3px;
+  }
+
+@media (min-width: 800px) {
+
+.site-header__btn-container {
+      float: right
+  }
+  }
+
+.site-header__menu-content {
+    padding-top: 90px;
+    text-align: center;
+    opacity: 0;
+    transition: all .3s ease-out;
+    transform: scale(1.2);
+    position: relative;
+    z-index: -10;
+  }
+
+@media (min-width: 800px) {
+
+.site-header__menu-content {
+      opacity: 1;
+      z-index: 1;
+      padding-top: 0;
+      transform: scale(1)
+  }
+  }
+
+.site-header__menu-content--is-visible {
+      opacity: 1;
+      z-index: 1;
+      transform: scale(1);
+    }
+
+.site-header__menu-icon--close-x::before {
+      transform: rotate(45deg) scaleX(1.25);
+    }
+
+.site-header__menu-icon--close-x .site-header__menu-icon__middle {
+      opacity: 0;
+      transform: translateX(0);
+    }
+
+.site-header__menu-icon--close-x::after {
+      transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+    }
+
+.primary-nav {
+  padding-top: 10px;
+}
+
+@media (min-width: 800px) {
+
+.primary-nav {
+    padding-top: 0
+}
+  }
+
+@media (min-width: 800px) {
+
+.primary-nav--pull-right {
+      float: right
+  }
+  }
+
+.primary-nav ul {
+    margin: 0;
+    padding: 0;
+    /* @mixin clearfix; */
+  }
+
+.primary-nav li {
+    padding-right: 7px;
+    display: inline-block;
+    list-style: none;
+  }
+
+@media (min-width: 800px) {
+
+.primary-nav li {
+      padding-right: 20px;
+      float: left;
+      display: block
+  }
+  }
+
+.primary-nav li:last-child {
+    padding-right: 0;
+  }
+
+@media (min-width: 800px) {
+
+.primary-nav li:last-child {
+      padding-right: 20px
+  }
+  }
+
+.primary-nav a {
+    text-decoration: none;
+    list-style: none;
+    display: block;
+    color: #FFF;
+    padding: 5px 8px;
+    font-size: .8rem;
+    background-color: rgba(47,85,114, .5);
+  }
+
+@media (min-width: 800px) {
+
+.primary-nav a {
+      padding: 12px 0;
+      background-color: transparent;
+      font-size: 1rem
   }
   }
