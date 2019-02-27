@@ -47,7 +47,7 @@
       width: 63%;
     }
   }
-  &--equal-height-at-medium {
+  .flexbox &--equal-height-at-medium {
     @mixin atMedium {
       display: flex;
     }

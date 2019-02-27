@@ -662,12 +662,12 @@ a {
 
 @media (min-width: 800px) {
 
-.row--equal-height-at-medium {
+.flexbox .row--equal-height-at-medium {
       display: flex
   }
   }
 
-.row--equal-height-at-medium > div {
+.flexbox .row--equal-height-at-medium > div {
       float: none;
       display: flex;
     }
@@ -816,79 +816,83 @@ a {
   }
 
 .icon {
-      background-image: url('/assets/images/sprites/sprite-a71f74ca.svg');
+      background-image: url('/assets/images/sprites/sprite-029f562c.svg');
+    }
+
+.no-svg .icon {
+      background-image: url('/assets/images/sprites/sprite-029f562c.png');
     }
 
 .icon--clear-view-escapes {
-    width: 142.4px;
-    height: 59.53px;
+    width: 144.4px;
+    height: 61.53px;
     background-position: 0 0;
   }
 
 .icon--comment {
-    width: 64px;
-    height: 64px;
-    background-position: 64.321608040201% 99.62096774193549%;
+    width: 66px;
+    height: 66px;
+    background-position: 65.02463054187191% 74.1453488372093%;
   }
 
 .icon--facebook {
-    width: 21.23px;
-    height: 42.01px;
-    background-position: 49.633949621541134% 40.776765531885744%;
+    width: 23.23px;
+    height: 44.01px;
+    background-position: 0 99.76287437496778%;
   }
 
 .icon--fire {
-    width: 56px;
-    height: 64px;
-    background-position: 68.79227053140097% 0;
+    width: 58px;
+    height: 66px;
+    background-position: 68.43601895734596% 0;
   }
 
 .icon--globe {
-    width: 64px;
-    height: 64px;
-    background-position: 0 99.62096774193549%;
+    width: 66px;
+    height: 66px;
+    background-position: 0 74.1453488372093%;
   }
 
 .icon--instagram {
-    width: 42.01px;
-    height: 42.01px;
-    background-position: 64.43730485542332% 43.83861908349887%;
+    width: 44.01px;
+    height: 44.01px;
+    background-position: 64.18063025023334% 34.0223722872313%;
   }
 
 .icon--mail {
-    width: 64px;
-    height: 48px;
-    background-position: 99.69849246231156% 45.714285714285715%;
+    width: 66px;
+    height: 50px;
+    background-position: 99.70443349753694% 35.1063829787234%;
   }
 
 .icon--rain {
-    width: 64px;
-    height: 64px;
-    background-position: 99.69849246231156% 0;
+    width: 66px;
+    height: 66px;
+    background-position: 99.70443349753694% 0;
   }
 
 .icon--star {
-    width: 64px;
-    height: 64px;
-    background-position: 32.1608040201005% 99.62096774193549%;
+    width: 66px;
+    height: 66px;
+    background-position: 32.51231527093596% 74.1453488372093%;
   }
 
 .icon--twitter {
-    width: 51.78px;
-    height: 42.06px;
-    background-position: 93.93049900577597% 76.7438673427436%;
+    width: 53.78px;
+    height: 44.06px;
+    background-position: 94.04330452560171% 59.812313086521605%;
   }
 
 .icon--wifi {
-    width: 60px;
-    height: 64px;
-    background-position: 29.55665024630542% 48.00806451612903%;
+    width: 62px;
+    height: 66px;
+    background-position: 29.95169082125604% 35.77325581395349%;
   }
 
 .icon--wifi_copy {
-    width: 60px;
-    height: 64px;
-    background-position: 0 48.00806451612903%;
+    width: 62px;
+    height: 66px;
+    background-position: 0 35.77325581395349%;
   }
 
 .site-footer {
@@ -1007,7 +1011,7 @@ a {
   }
 
       .site-header--dark .site-header__logo {
-        transform: scale(.57);
+        transform: scale(.56);
       }
   }
 

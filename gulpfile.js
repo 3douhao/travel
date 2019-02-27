@@ -1,7 +1,6 @@
-// require('./gulp/tasks/styles')
-// require('./gulp/tasks/watch')
-// const path = require('path')
 const wpconfig = require('./webpack.config.js')
+const modernizr = require('gulp-modernizr')
+const svg2png = require('gulp-svg2png')
 const { src, dest, watch, series } = require('gulp')
 const webpack = require('webpack')
 const postcss = require('gulp-postcss')
@@ -16,8 +15,20 @@ const svgSprite = require('gulp-svg-sprite')
 const rename = require('gulp-rename')
 const del = require('del')
 const config = {
+  shape: {
+    spacing: {
+      padding: 1
+    }
+  },
   mode: {
     css: {
+      variables: {
+        replaceSvgWithPng: function () {
+          return function (sprite, render) {
+            return render(sprite).split('.svg').join('.png')
+          }
+        }
+      },
       sprite: 'sprite.svg',
       render: {
         css: {
@@ -86,17 +97,35 @@ const copySpriteCss = function (done) {
     .pipe(dest('./app/assets/styles/modules/'))
 }
 const copySpriteImage = function (done) {
-  return src('./app/temp/sprite/css/**/*.svg')
+  return src('./app/temp/sprite/css/**/*.{svg,png}')
     .pipe(dest('./app/assets/images/sprites'))
 }
 
 const clean = function (done) {
   return del('./app/temp/sprite', './app/assets/images/sprites')
 }
+const createPngCopy = function (done) {
+  return src('./app/temp/sprite/css/*.svg')
+    .pipe(svg2png())
+    .pipe(dest('./app/temp/sprite/css'))
+  done()
+}
+const modern = function (done) {
+  return src(['./app/assets/styles/**/*.css', './app/assets/scripts/**/*.js'])
+    .pipe(modernizr({
+      options: [
+        'setClasses'
+      ]
+    })).pipe(dest('./app/temp/scripts'))
+  done()
+}
+exports.modern = modern
+exports.createPng = createPngCopy
+exports.png = series(svgCreate, createPngCopy, copySpriteImage)
 
 exports.icons = series(svgCreate, copySpriteCss, copySpriteImage)
 
-exports.bs = series(clean, svgCreate, copySpriteCss, copySpriteImage, bs, wp)
+exports.bs = series(clean, svgCreate, copySpriteCss, copySpriteImage, bs, wp, modern)
 exports.svg = svgCreate
 exports.cp = copySpriteCss
 exports.wp = wp
