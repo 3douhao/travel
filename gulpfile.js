@@ -1,4 +1,8 @@
+const rev = require('gulp-rev')
+const cssnano = require('gulp-cssnano')
+const uglify = require('gulp-uglify')
 const wpconfig = require('./webpack.config.js')
+const usemin = require('gulp-usemin')
 const modernizr = require('gulp-modernizr')
 const svg2png = require('gulp-svg2png')
 const { src, dest, watch, series } = require('gulp')
@@ -13,6 +17,7 @@ const hexrgba = require('postcss-hexrgba')
 const browserSync = require('browser-sync').create()
 const svgSprite = require('gulp-svg-sprite')
 const rename = require('gulp-rename')
+const imagemin = require('gulp-imagemin')
 const del = require('del')
 const config = {
   shape: {
@@ -48,6 +53,15 @@ const bs = function (done) {
     notify: false,
     server: {
       baseDir: 'app'
+    }
+  })
+  done()
+}
+const reviewDist = function (done) {
+  browserSync.init({
+    notify: false,
+    server: {
+      baseDir: 'docs'
     }
   })
   done()
@@ -119,6 +133,32 @@ const modern = function (done) {
     })).pipe(dest('./app/temp/scripts'))
   done()
 }
+const imageOptimize = function (done) {
+  return src(['./app/assets/images/**/*', '!./app/assets/images/icons', '!./app/assets/images/icons/**/*'])
+    .pipe(imagemin({
+      progressive: true,
+      interlaced: true,
+      multipass: true
+    }))
+    .pipe(dest('./docs/assets/images'))
+  done()
+}
+const delDistFolder = function (done) {
+  del('./docs')
+  done()
+}
+const minify = function (done) {
+  return src('./app/index.html')
+    .pipe(usemin({
+      css: [function () { return rev() }, function () { return cssnano() }],
+      js: [function () { return rev() }, function () { return uglify() }]
+    }))
+    .pipe(dest('./docs'))
+  done()
+}
+exports.mini = minify
+exports.build = series(deldocsFolder, svgCreate, copySpriteCss, copySpriteImage, imageOptimize, styles, wp, minify)
+exports.imagemin = imageOptimize
 exports.modern = modern
 exports.createPng = createPngCopy
 exports.png = series(svgCreate, createPngCopy, copySpriteImage)
@@ -129,3 +169,4 @@ exports.bs = series(clean, svgCreate, copySpriteCss, copySpriteImage, bs, wp, mo
 exports.svg = svgCreate
 exports.cp = copySpriteCss
 exports.wp = wp
+exports.docs = reviewdocs
